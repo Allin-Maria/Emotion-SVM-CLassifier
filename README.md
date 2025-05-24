@@ -1,34 +1,27 @@
-# Emotion-SVM-CLassifier
-This project is a Support Vector Machine (SVM) based text classification system designed to detect emotions from text data. It leverages TF-IDF vectorization and compares various SVM kernels to find the most effective one for emotion detection.
 
-📂 Project Structure
-emotion_svm_classifier.py: Main script containing all data loading, preprocessing, training, evaluation, and visualization code.
+Emotion Classification with SVM
+This project performs emotion classification on a dataset of text entries using Support Vector Machines (SVM). It includes data preprocessing, feature extraction with TF-IDF, training with different SVM kernels, evaluation, and model persistence.
 
-emotions (1).csv: Input dataset with text-emotion label pairs.
+📂 File: emotion_classification.py
+ Features
+Text Preprocessing: Lowercasing, URL/user mention removal, punctuation and digit cleaning, stopword removal, stemming.
 
-🧠 Features
-Text preprocessing: case normalization, stopword removal, stemming, and noise cleaning.
+Label Encoding: Converts emotion labels to numerical values.
 
-Label encoding for categorical emotion labels.
+TF-IDF Vectorization: Extracts text features with a limit of 20,000 features.
 
-TF-IDF vectorization of textual data.
+Model Training: Evaluates SVM with multiple kernels (linear, poly, rbf, sigmoid).
 
-SVM classifier training using multiple kernel types: linear, poly, rbf, and sigmoid.
+Evaluation: Generates accuracy, classification report, and confusion matrix.
 
-Evaluation metrics: Accuracy, Precision, Recall, F1-Score.
+Model Saving: Best performing model and preprocessing tools are saved using joblib.
 
-Confusion matrix visualization.
-
-Kernel-wise performance comparison with visual plots.
-
-📦 Dependencies
-Install the following packages before running the script:
-
+ Requirements
 bash
 Copy
 Edit
-pip install pandas numpy scikit-learn nltk matplotlib seaborn
-Also, download necessary NLTK resources (automatically done in the script):
+pip install pandas numpy scikit-learn matplotlib seaborn nltk joblib
+You must also download NLTK resources the first time you run:
 
 python
 Copy
@@ -36,32 +29,40 @@ Edit
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
-🚀 How to Run
-Make sure the dataset emotions (1).csv is in the same path or update the script with the correct path.
+
+ Dataset
+Assumes a CSV file emotions.csv with at least two columns:
+
+text: The raw input text.
+
+label: The emotion label.
+
+ Usage
+Place emotions.csv in the appropriate path or change the path in the script.
 
 Run the script:
 
 bash
 Copy
 Edit
-python emotion_svm_classifier.py
-The script will:
+python emotion_classification.py
+After execution:
 
-Preprocess the text
+The script prints model performance metrics.
 
-Encode the labels
+Saves:
 
-Vectorize using TF-IDF
+Best model: best_svm_model.pkl
 
-Train and evaluate SVM with each kernel
+Vectorizer: tfidf_vectorizer.pkl
 
-Display confusion matrices and a performance comparison bar chart
+Label encoder: label_encoder.pkl
 
-📊 Output
-Console logs of accuracy and classification reports for each kernel.
+Output
+Console output with classification reports.
 
-Confusion matrix heatmaps.
+Confusion matrices and performance comparison bar chart.
 
-Bar plot comparing accuracy, precision, recall, and f1-score for each kernel.
+Serialized model files for reuse.
 
-Identification of the best-performing kernel.
+
